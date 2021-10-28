@@ -6,14 +6,14 @@ const bcrypt = require('bcryptjs');
 
 router.post('/register', async (req, res) => {
 
-
         let {username, email, password} = req.body.user;
          
-        await UserModel.create({
+        UserModel.create({
 
             username,
-            email,
-            password,
-        });
-        res.send('This is our user/register endpoint!');
-});
+           email,
+           password,
+        })
+    })
+
+module.exports = router;
