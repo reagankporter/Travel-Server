@@ -2,15 +2,16 @@ require('dotenv').config();
 const Express = require ('express');
 const app = Express();
 const dbConnection = require('./db');
+
 const controllers = require('./Controllers');
 
+app.use(require('./Middleware/headers'));
 app.use(Express.json());
-
 app.use('/user', controllers.userController);
 
 app.use(require('./Middleware/validate-jwt'));
 
-app.use ('/journal',controllers.journalController);
+app.use ('/journal', controllers.journalController);
 
 app.use('/bucketList', controllers.bucketListController);
 
@@ -25,6 +26,4 @@ dbConnection.authenticate()
         console.log(`[Server]: Server crashed.  Error = ${err}`);
     });
 
-app.use('/test', (req, res) => {
-    res.send('This is a message from the test endpoint on the server!')
-});
+

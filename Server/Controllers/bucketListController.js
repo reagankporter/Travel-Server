@@ -30,7 +30,6 @@ router.post('/create', validateJWT, async(req, res) => {
     }
     BucketListModel.create(bucketListEntry)
 });
-            
 
 //* Update List Item
 router.put("/update/:entryId", validateJWT, async (req, res) => {

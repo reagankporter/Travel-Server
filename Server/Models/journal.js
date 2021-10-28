@@ -22,5 +22,4 @@ const Journal = db.define('journal', {
         type: DataTypes.INTEGER
     }
 });
-
 module.exports = Journal;
