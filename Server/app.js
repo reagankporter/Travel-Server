@@ -8,7 +8,7 @@ app.use(Express.json());
 
 app.use('/user', controllers.userController);
 
-// app.use(require('./middleware/validate-jwt'));
+app.use(require('./Middleware/validate-jwt'));
 
 app.use ('/journal',controllers.journalController);
 

@@ -1,13 +1,8 @@
 const router = require('express').Router();
 const { UserModel } = require('../Models'); 
-
-// router.post('/register', async (req, res) => {    
-//     UserModel.create({
-//         username: 'billybob',
-//         email: 'billy@email.com',
-//         password: 'password1234'
-//     })
-// })
+const { UniqueConstraintError } = require("sequelize/lib/errors");
+const jwt = require('jsonwebtoken');
+const bcrypt = require('bcryptjs');
 
 router.post('/register', async (req, res) => {
 
@@ -20,7 +15,5 @@ router.post('/register', async (req, res) => {
             email,
             password,
         });
-        res.send('This is out user/register endpoint!');
+        res.send('This is our user/register endpoint!');
 });
-
-module.exports = router;
