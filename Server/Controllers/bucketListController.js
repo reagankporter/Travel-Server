@@ -8,8 +8,10 @@ router.get('/practice', (req, res) => {
 });
 
 //* Create List Item
-router.post('/create', /*validateSession*/ async(req, res) => {
+router.post('/create', /*validateJWT*/ async(req, res) => {
     const {nameOfPlace, locationOfPlace, eventInPlace, whyAdded} = req.body;
+    const {id} = req.user;
+    const 
 
     try{ 
         const BucketList = await BucketListModel.create({
@@ -17,7 +19,7 @@ router.post('/create', /*validateSession*/ async(req, res) => {
             locationOfPlace, 
             eventInPlace, 
             whyAdded,
-            owner: id       
+            // owner: id       
         });
         res.status(201).json({
             message: `The list item has successfully been added yo your bucket!`,
