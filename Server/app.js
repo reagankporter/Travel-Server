@@ -1,6 +1,26 @@
-const Express = require ('express');
-const app = Express ();
+const Express = require('express');
+const app = Express();
+const dbConnection = require('./db');
+const controllers = require("./Controllers");
 
-app.listen(3000, () => {
-    console.log(`[Server]: App is listening on 3000.`);
+//require('dotenv').config();
+//app.use(Express.json());
+//app.use(require('./middleware/validate-jwt'));
+     
+     app.use('/journal', controllers.journalController);
+     app.use('/user', controllers.userController);
+     
+    dbConnection.authenticate()
+      .then(() => dbConnection.sync())
+      .then(() => {
+        app.listen(3000, () => {
+          console.log(`[Server]: App is listening on 3000.`);
+        });
+      })
+    .catch((err) => {
+    console.log(`[Server]: Server crashed. Error = ${err}`);
 });
+
+
+
+
