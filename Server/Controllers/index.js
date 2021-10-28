@@ -1,3 +1,4 @@
-module.exports ={
-    journalController: require("./journalcontroller"),
-};
+module.exports = {
+    userController: require('./usercontroller'),
+    journalController: require('./journalcontroller'),
+ };

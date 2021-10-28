@@ -2,6 +2,7 @@ require('dotenv').config();
 const Express = require ('express');
 const app = Express();
 const dbConnection = require('./db');
+
 const controllers = require('./Controllers');
 
 app.use(Express.json());
@@ -10,7 +11,7 @@ app.use('/user', controllers.userController);
 
 app.use(require('./middleware/validate-jwt'));
 
-app.use ('/journal',controllers.journalController);
+app.use('/journal', controllers.journalController);
 
 dbConnection.authenticate()
     .then(() => dbConnection.sync())
@@ -20,5 +21,6 @@ dbConnection.authenticate()
         });
     })
     .catch((err) => {
-        console.log(`[Server]: Server crashed.  Error = ${err}`);
+        console.log(`[Server]: Server crashed. Error = ${err}`);
     });
+
