@@ -1,26 +1,31 @@
 const {DataTypes} = require('sequelize');
 const db = require('../db');
 
-const Journal = db.define('journal', {
-    title: {
+const BucketList = db.define('bucketList', {
+    nameOfPlace: {
         type: DataTypes.STRING,
         allowNull: false
     },
-    date: {
+
+    locationOfPlace: {
         type: DataTypes.STRING,
         allowNull: false
     },
-    entry: {
+
+    eventInPlace: {
+        type: DataTypes.STRING,
+        allowNull: true
+    },
+
+    whyAdded: {
         type: DataTypes.STRING,
         allowNull: false
     },
-    rating: {
-        type: DataTypes.INTEGER,
-        allowNull: false
-    },
+
     owner: {
         type: DataTypes.INTEGER
     }
 });
 
-module.exports = Journal;
+module.exports = BucketList;
+
