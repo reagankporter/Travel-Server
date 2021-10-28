@@ -2,6 +2,10 @@ const Express = require('express');
 const app = Express();
 const dbConnection = require('./db');
 const controllers = require("./Controllers");
+
+//require('dotenv').config();
+//app.use(Express.json());
+//app.use(require('./middleware/validate-jwt'));
      
      app.use('/journal', controllers.journalController);
      app.use('/user', controllers.userController);
@@ -17,8 +21,6 @@ const controllers = require("./Controllers");
     console.log(`[Server]: Server crashed. Error = ${err}`);
 });
 
-require('dotenv').config();
-app.use(Express.json());
-app.use(require('./middleware/validate-jwt'));
+
 
 

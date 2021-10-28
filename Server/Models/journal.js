@@ -15,7 +15,7 @@ const Journal = db.define('journal', {
         allowNull: false
     },
     rating: {
-        type: DataTypes.STRING,
+        type: DataTypes.INTEGER,
         allowNull: false
     },
     owner: {
