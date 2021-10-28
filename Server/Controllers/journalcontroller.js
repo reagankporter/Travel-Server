@@ -1,6 +1,6 @@
 const Express = require('express');
 const router = Express.Router();
-let validateJWT = require ('../Middleware/validate-jwt');
+let validateJWT = require('../Middleware/validate-jwt');
 const {JournalModel} = require('../Models');
 
 router.get('/practice', (req, res) => {
