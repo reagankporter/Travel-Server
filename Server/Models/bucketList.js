@@ -17,7 +17,7 @@ const BucketList = db.define('bucketList', {
         allowNull: true
     },
 
-    whyAdded: {
+    entry: {
         type: DataTypes.STRING,
         allowNull: false
     },
