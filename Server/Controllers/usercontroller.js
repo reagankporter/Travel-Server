@@ -11,6 +11,7 @@ const { UserModel } = require('../Models'); 
 
 router.post('/register', async (req, res) => {
 
+
         let {username, email, password} = req.body.user;
          
         await UserModel.create({

@@ -3,3 +3,4 @@ module.exports = {
     journalController: require('./journalController'),
     bucketListController: require('./bucketListController'),
  };
+
