@@ -5,13 +5,14 @@ const dbConnection = require('./db');
 const controllers = require('./Controllers');
 app.use(require('./Middleware/headers'));
 app.use(Express.json());
-
 app.use('/user', controllers.userController);
-
 app.use(require('./Middleware/validate-jwt'));
 
 
+
 app.use ('/journal',controllers.journalController);
+
+app.use('/bucketList', controllers.bucketListController);
 
 dbConnection.authenticate()
     .then(() => dbConnection.sync())
@@ -24,3 +25,9 @@ dbConnection.authenticate()
         console.log(`[Server]: Server crashed.  Error = ${err}`);
     });
 
+<<<<<<< HEAD
+=======
+app.use('/test', (req, res) => {
+    res.send('This is a message from the test endpoint on the server!')
+});
+>>>>>>> cab4267bbf8e914fff464a21e8fc4bc3b4eee41f
