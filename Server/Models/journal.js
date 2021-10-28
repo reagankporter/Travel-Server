@@ -1,5 +1,6 @@
-const {DataTypes} = require ('sequelize');
-const db = require('../db')
+
+const {DataTypes} = require('sequelize');
+const db = require('../db');
 
 const Journal = db.define('journal', {
     title: {
@@ -15,10 +16,11 @@ const Journal = db.define('journal', {
         allowNull: false
     },
     rating: {
-        type: DataTypes. INTEGER,
+        type: DataTypes.INTEGER,
         allowNull: false
     },
     owner: {
         type: DataTypes.INTEGER
     }
 })
+module.exports = Journal;

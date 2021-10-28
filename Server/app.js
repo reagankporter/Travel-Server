@@ -3,12 +3,13 @@ const Express = require ('express');
 const app = Express();
 const dbConnection = require('./db');
 const controllers = require('./Controllers');
-
+app.use(require('./Middleware/headers'));
 app.use(Express.json());
 
 app.use('/user', controllers.userController);
 
 app.use(require('./Middleware/validate-jwt'));
+
 
 app.use ('/journal',controllers.journalController);
 
