@@ -3,7 +3,7 @@ const router = Express.Router();
 let validateJWT = require ('../Middleware/validate-jwt');
 const {JournalModel} = require('../Models');
 
-router.get('/practice', (req, res) => {
+router.get('/practice', validateJWT, (req, res) => {
     res.send('hey')
 });
 
