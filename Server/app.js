@@ -2,14 +2,20 @@ require('dotenv').config();
 const Express = require ('express');
 const app = Express();
 const dbConnection = require('./db');
+
 //require('dotenv').config();
 //app.use(require('./middleware/validate-jwt'));
 
 const controllers = require('./Controllers');
+
 app.use(require('./Middleware/headers'));
 app.use(Express.json());
 app.use('/user', controllers.userController);
+
+app.use(require('./Middleware/validate-jwt'));
+
 app.use ('/journal', controllers.journalController);
+
 app.use('/bucketList', controllers.bucketListController);
 
 dbConnection.authenticate()
