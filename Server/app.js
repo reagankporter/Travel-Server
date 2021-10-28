@@ -25,9 +25,7 @@ dbConnection.authenticate()
         console.log(`[Server]: Server crashed.  Error = ${err}`);
     });
 
-<<<<<<< HEAD
-=======
 app.use('/test', (req, res) => {
     res.send('This is a message from the test endpoint on the server!')
 });
->>>>>>> cab4267bbf8e914fff464a21e8fc4bc3b4eee41f
+
