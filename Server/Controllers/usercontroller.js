@@ -2,11 +2,14 @@ const router = require('express').Router();
 const { UserModel } = require('../Models'); 
 
 router.post('/register', async (req, res) => {
+
+        let {username, email, password} = req.body.user;
          
         UserModel.create({
-            username: 'testname123',
-            email: 'user@email.com',
-            password: 'password1234'
+
+            username,
+           email,
+           password,
         })
     })
 
