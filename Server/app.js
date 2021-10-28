@@ -3,6 +3,9 @@ const Express = require ('express');
 const app = Express();
 const dbConnection = require('./db');
 
+//require('dotenv').config();
+//app.use(require('./middleware/validate-jwt'));
+
 const controllers = require('./Controllers');
 
 app.use(require('./Middleware/headers'));

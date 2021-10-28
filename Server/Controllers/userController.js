@@ -1,21 +1,27 @@
 const router = require('express').Router();
 const { UserModel } = require('../Models'); 
-const User = require('../Models/user');
 const { UniqueConstraintError } = require("sequelize/lib/errors");
+const jwt = require("jsonwebtoken");
+const bcrypt = require("bcryptjs");
+
 
 router.post('/register', async (req, res) => {
 
     let {username, email, password} = req.body.user;
     try{
-        await UserModel.create({
+       const User = await UserModel.create({
 
         username,
             email,
-            password,
+            password: bcrypt.hashSync(password, 13),
         });
+
+let token = jwt.sign({id: User.id,}, "i_am_secret", {expiresIn: 60 * 60 * 24});
+
             res.status(201).json({
               message: "User successfully registered",
               user: User,
+            sessionToken: token
             });
           } catch (err) {
             if (err instanceof UniqueConstraintError) {
@@ -31,6 +37,7 @@ router.post('/register', async (req, res) => {
 });
 
 router.post("/login", async (req, res) => {
+    let {username, password} = req.body.user;
 
 try {
       let loginUser = await UserModel.findOne({
@@ -40,16 +47,28 @@ try {
         },
       });
 
-
         if (loginUser) {
+
+            let passwordComparison = await bcrypt.compare(password, loginUser.password);
+    
+          if (passwordComparison) {
+
+    let token = jwt.sign({id: loginUser.id}, process.env.JWT_SECRET, {expiresIn: 60 * 60 * 24});
+
             res.status(200).json({
               user: loginUser,
-              message: "User successfully logged in!"
+              message: "User successfully logged in!",
+                sessionToken: token
             });
         } else {
                 res.status(401).json({
-                message: 'Login failed'
-              });
+                message: 'Incorrect Email or Password'
+              })
+        }
+            } else {
+                   res.status(401).json({
+                   message: 'Incorrect email or password'
+                });
             }
           } catch (error) {
             res.status(500).json({
