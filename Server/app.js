@@ -1,4 +1,3 @@
-
 const Express = require('express');
 const app = Express();
 const dbConnection = require('./db');
@@ -21,6 +20,5 @@ const controllers = require("./Controllers");
 require('dotenv').config();
 app.use(Express.json());
 app.use(require('./middleware/validate-jwt'));
-
 
 
