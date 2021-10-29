@@ -61,12 +61,12 @@ router.post('/login', async (req, res) => {
             });
         } else {
                 res.status(401).json({
-                message: 'Incorrect Email or Password'
+                message: 'Incorrect Username or Password'
               })
         }
             } else {
                    res.status(401).json({
-                   message: 'Incorrect email or password'
+                   message: 'Incorrect username or password'
                 });
             }
     } catch (error) {
