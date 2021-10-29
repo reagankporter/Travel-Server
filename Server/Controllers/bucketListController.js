@@ -1,7 +1,7 @@
-const Express = require("express");
+const Express = require('express');
 const router = Express.Router();
-const validateJWT = require("../Middleware/validate-jwt");
-const {BucketListModel} = require("../models");
+const validateJWT = require('../Middleware/validate-jwt');
+const {BucketListModel} = require('../models');
 
 router.get('/practice', validateJWT, (req, res) => {
     res.send('Hey! This is the practice route!  Good job!') 
@@ -32,7 +32,7 @@ router.post('/create', validateJWT, async(req, res) => {
 });
 
 //* Update List Item
-router.put("/update/:entryId", validateJWT, async (req, res) => {
+router.put('/update/:entryId', validateJWT, async (req, res) => {
     const {nameOfPlace, locationOfPlace, eventInPlace, entry} = req.body.bucketList;
     const bucketListId = req.params.entryId;
     const userId = req.user.id;
@@ -73,7 +73,7 @@ router.delete('/delete/:id', validateJWT, async (req, res) => {
             }
         };
         await BucketListModel.destroy(query);
-        res.status(200).json({message: "Item Removed"});
+        res.status(200).json({message: 'Item Removed'});
     } catch(err) {
         res.status(500).json({error: err});
     }
