@@ -15,7 +15,7 @@
   "author": "All-Of-Us",
   "license": "ISC",
   "devDependencies": {
-    "nodemon": "^1.19.4"
+    "nodemon": "^2.0.14"
   },
   "bugs": {
     "url": "https://github.com/reagankporter/Travel-Server/issues"
