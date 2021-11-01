@@ -10,7 +10,7 @@ router.post('/register', async (req, res) => {
     let {username, email, password} = req.body.user;
     try{
        const User = await UserModel.create({
-
+        
             username,
             email,
             password: bcrypt.hashSync(password, 13),
