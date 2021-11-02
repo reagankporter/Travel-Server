@@ -1,6 +1,6 @@
 const Express = require('express');
 const router = Express.Router();
-let validateJWT = require ('../Middleware/validate-jwt');
+let validateJWT = require('../Middleware/validate-jwt');
 const {JournalModel} = require('../Models');
 
 router.get('/practice', (req, res) => {
@@ -27,7 +27,7 @@ router.post('/create', validateJWT, async (req,res) => {
     }catch (err){
         res.status(500).json({ error: err });
     }
-    JournalModel.create(journalEntry)
+    // JournalModel.create(journalEntry)
 });
 
 router.get ('/', validateJWT, async (req, res) => {
