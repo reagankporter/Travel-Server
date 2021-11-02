@@ -14,10 +14,10 @@ const BucketList = db.define('bucketList', {
 
     eventInPlace: {
         type: DataTypes.STRING,
-        allowNull: true
+        allowNull: false
     },
 
-    entry: {
+    whyAdded: {
         type: DataTypes.STRING,
         allowNull: false
     },

@@ -7,6 +7,6 @@ const sequelize = new Sequelize(process.env.DATABASE_URL, {
     ssl: process.env.ENVIROMENT === "production"
 });
 
-// const sequelize = new Sequelize('postgres://postgres:14b9c4a2e2ce45508f4991456a37ae47@localhost:5432/travel-server');  // Ginea's Postgres
+const sequelize = new Sequelize('postgres://postgres:14b9c4a2e2ce45508f4991456a37ae47@localhost:5432/travel-server');  // Ginea's Postgres
 
 module.exports = sequelize;

@@ -1,7 +1,7 @@
-const Express = require("express");
+const Express = require('express');
 const router = Express.Router();
-const validateJWT = require("../Middleware/validate-jwt");
-const {BucketListModel} = require("../models");
+let validateJWT = require('../Middleware/validate-jwt');
+const {BucketListModel} = require('../Models');
 
 router.get('/practice', validateJWT, (req, res) => {
     res.send('Hey! This is the practice route!  Good job!') 
@@ -9,31 +9,30 @@ router.get('/practice', validateJWT, (req, res) => {
 
 
 //* Create List Item
-router.post('/create', validateJWT, async(req, res) => {
-    const {nameOfPlace, locationOfPlace, eventInPlace, entry} = req.body;
+router.post('/create', validateJWT, async (req,res) => {
+    const {nameOfPlace, locationOfPlace, eventInPlace, whyAdded} = req.body.bucketList;
     const {id} = req.user;
     const bucketListEntry = {
         nameOfPlace, 
         locationOfPlace, 
         eventInPlace, 
-        entry,
+        whyAdded,
         owner: id  
     }
 
     try{
         const newBucketList = await BucketListModel.create(bucketListEntry);          
-        res.status(200).json(newBucketList, {
-            message: `The list item has successfully been added yo your bucket!`})
+        res.status(200).json(newBucketList)
     } catch(err) {
         res.status(500).json({
             message: `The list item failed to enter the bucket: ${err}`});
     }
-    BucketListModel.create(bucketListEntry)
+    // BucketListModel.create(bucketListEntry)
 });
 
 //* Update List Item
-router.put("/update/:entryId", validateJWT, async (req, res) => {
-    const {nameOfPlace, locationOfPlace, eventInPlace, entry} = req.body.bucketList;
+router.put('/update/:entryId', validateJWT, async (req, res) => {
+    const {nameOfPlace, locationOfPlace, eventInPlace, whyAdded} = req.body.bucketList;
     const bucketListId = req.params.entryId;
     const userId = req.user.id;
 
@@ -47,7 +46,7 @@ router.put("/update/:entryId", validateJWT, async (req, res) => {
         nameOfPlace: nameOfPlace,
         locationOfPlace: locationOfPlace,
         eventInPlace: eventInPlace,
-        entry: entry
+        whyAdded: whyAdded
     };
 
     try {
@@ -68,12 +67,12 @@ router.delete('/delete/:id', validateJWT, async (req, res) => {
     try {
         const query = {
             where: {
-                id: journalId,
+                id: bucketListId,
                 owner: ownerId
             }
         };
         await BucketListModel.destroy(query);
-        res.status(200).json({message: "Item Removed"});
+        res.status(200).json({message: 'Item Removed'});
     } catch(err) {
         res.status(500).json({error: err});
     }
